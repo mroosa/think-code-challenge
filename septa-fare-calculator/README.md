@@ -13,4 +13,3 @@ The majority of dependencies will be from the Vite setup, and the default config
 ```bash
 npm run dev
 ```
-

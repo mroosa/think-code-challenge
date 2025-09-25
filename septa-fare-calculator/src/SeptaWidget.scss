@@ -1,0 +1,175 @@
+:root {
+  --septa-widget-input-font-size: clamp(1.6rem, 5vw, 2rem);
+  --septa-widget-input-border-color: #aaa;
+  --septa-widget-input-border-width: 2px;
+  --septa-widget-input-border-radius: 12px;
+  --septa-widget-input-padding: 10px 20px;
+  --septa-widget-theme-color: #0000ff;
+  --septa-widget-theme-accent-color: #1f4fa3;
+  --septa-widget-theme-accent-color-light: #78a6f7;
+  --septa-widget-select-focus: blue;
+  --septa-widget-select-arrow: var(--septa-widget-input-border-color);
+}
+
+// -----
+// Assumed values based on potential app container
+html * {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+#root {
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+// -----
+
+// redfine box-sizing to be widget specific in case container lacks global delcaration
+.septa-widget * {
+  box-sizing: border-box;
+}
+.septa-widget {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+.septa-widget header,
+.septa-widget footer {
+  width: 100%;
+}
+
+.septa-widget header {
+  display: flex;
+  gap: 20px;
+  height: 80px;
+  padding: 20px;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    max-height: 100%;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(2rem, 6vw, 2.5rem);
+  }
+
+}
+
+.septa-widget footer {
+  padding: 20px;
+  min-height: 200px;
+
+  h2 {
+    font-weight: 600;
+    font-size: var(--septa-widget-input-font-size);
+    margin: 0;
+  }
+
+  .total {
+    font-weight: bold;
+    font-size: clamp(4rem, 10vw, 5rem);
+    margin: 0;
+  }
+}
+
+.septa-widget header,
+.septa-widget footer {
+  background: #4f4f4f;
+  color: #ffffff;
+}
+
+/*----------------------------------------------*\
+    #APP
+\*----------------------------------------------*/
+.septa-widget main {
+  max-width: 550px;
+  margin: 0 auto;
+}
+
+.septa-widget main {
+
+  .input-row {
+    border-bottom: 1px solid #ccc;
+    padding: clamp(1rem, 4vw, 2rem) 2rem;
+
+    &:last-child {
+      border-bottom: 0;
+    }
+
+    select,
+    input {
+      font-size: var(--septa-widget-input-font-size);
+      padding: var(--septa-widget-input-padding);
+    }
+
+    // Using class to account for custom themed input elements
+    .label {
+      font-size: var(--septa-widget-input-font-size);
+      font-weight: 600;
+      display: block;
+      margin: 0 0 20px 0;
+    }
+
+    select,
+    input {
+      border: 1px solid var(--septa-widget-input-border-color);
+      border-radius: var(--septa-widget-input-border-radius);
+      border-width: var(--septa-widget-input-border-width);
+
+      &:focus {
+        outline: none;
+        border-color: var(--septa-widget-theme-accent-color);
+        box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, .25);
+      }
+    }
+
+    .description {
+      color: #666;
+      font-size: clamp(1rem, 3vw, 1.25rem);
+      margin-bottom: 0;
+    }
+
+    .input-contain {
+      text-align: left;
+      display: inline-block;
+    }
+
+  }
+
+}
+
+.septa-widget  footer {
+  
+  .savings-info {
+    margin: 0 auto;
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+    gap: 10px;
+
+    svg {
+      color: var(--septa-widget-theme-accent-color-light);
+      max-width: 80px;
+    }
+  }
+
+}
