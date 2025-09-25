@@ -140,6 +140,50 @@ body {
       }
     }
 
+    /* Custom select styling */
+    .themed-select {
+      display: grid;
+      grid-template-areas: "select";
+      align-items: center;
+      position: relative;
+      margin: 0 auto;
+      min-width: 15ch;
+      max-width: 40ch;
+      cursor: pointer;
+      line-height: 1.1;
+      background-color: #fff;
+      background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+
+      // Reset select box (except border)
+      select {
+        appearance: none;
+        background-color: transparent;
+        padding-right: 30px;
+        margin: 0;
+        width: 100%;
+        cursor: inherit;
+        line-height: inherit;
+
+      }
+
+      select,
+      &::after {
+        grid-area: select;
+      }
+
+      // Themed arrow
+      &::after {
+        content: "";
+        justify-self: end;
+        width: 1.5rem;
+        height: .8rem;
+        margin-right: 15px;
+        background-color: var(--septa-widget-theme-accent-color);
+        clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+        pointer-events: none;
+      }
+    }
+
     .description {
       color: #666;
       font-size: clamp(1rem, 3vw, 1.25rem);
@@ -151,6 +195,109 @@ body {
       display: inline-block;
     }
 
+    /* Custom radio button styling */
+    .themed-input-radio {
+      display: block;
+      cursor: pointer;
+      position: relative;
+      
+      input[type="radio"] {
+        position: absolute;
+        width: 0;
+        height: 0;
+        left: 0;
+        top: 0;
+
+        & ~ label {
+          font-size: var(--septa-widget-input-font-size);
+          position: relative;
+          display: flex;
+          align-items: center;
+          gap: .375em;
+
+          span {
+            content: "";
+            display: block;
+            position: relative;
+            aspect-ratio: 1;
+            width: auto;
+            height: .7em;
+            border: 3px solid #fff;
+            box-shadow: 0 0 0 2px var(--septa-widget-input-border-color);
+            border-radius: 50%;
+            background: #fff;
+          }
+        }
+
+        &:checked ~ label span {
+            background: radial-gradient(circle at top left, var(--septa-widget-theme-accent-color-light), var(--septa-widget-theme-accent-color));
+        }
+
+        &:focus {
+          outline: none;
+          & ~ label {
+            color: var(--septa-widget-theme-accent-color);
+            span {
+              box-shadow: 0 0 0 2px var(--septa-widget-theme-accent-color), 2px 2px 5px 2px rgba(0, 0, 0, .25);
+            }
+          }
+        }
+      }
+    }
+
+    .themed-input-number {
+      position: relative;
+      display: inline-block;
+      z-index: 1;
+      
+      // TODO: Add functionality to custom number slider buttons
+      // WebKit and Blink
+      input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+      // Firefox
+      input[type="number"] {
+        -moz-appearance: textfield;
+      }
+
+      &::before,
+      &::after {
+        display: block;
+        position: absolute;
+        content: "";
+        cursor: pointer;
+        right: 15px;
+        z-index: 2;
+        justify-self: end;
+        width: 1.5rem;
+        height: .8rem;
+        background-color: var(--septa-widget-theme-accent-color);
+        font-size: var(--septa-widget-input-font-size);
+      }
+
+      &::before {
+        bottom: calc(50% + 3px);
+        clip-path: polygon(50% 0, 100% 100%, 0 100%);
+     }
+
+      &::after {
+        top: calc(50% + 3px);
+        clip-path: polygon(100% 0, 0 0, 50% 100%);
+      }
+
+    }
+
+    /* Specific input styles */
+    #input-number-1 {
+      display: inline-block;
+      margin: 0 auto;
+      text-align: center;
+      width: 100%;
+
+    }
   }
 
 }
