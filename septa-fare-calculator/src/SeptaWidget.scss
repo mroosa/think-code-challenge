@@ -98,9 +98,17 @@ body {
 /*----------------------------------------------*\
     #APP
 \*----------------------------------------------*/
+.septa-widget .loading,
 .septa-widget main {
   max-width: 550px;
   margin: 0 auto;
+}
+
+.septa-widget .loading {
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .septa-widget main {
