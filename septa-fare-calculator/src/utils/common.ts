@@ -10,6 +10,10 @@ export const formatAttribute = (value: string) => {
     return formattedString;
 }
 
+export const formatCurrency = (value: number) => {
+    return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+}
+
 export const returnUniqueValues = (v: any, i: any, ary: any[]) => {
         return ary.indexOf(v) === i;
 }

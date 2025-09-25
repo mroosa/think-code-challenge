@@ -1,21 +1,33 @@
-interface InputRadioProps {
+import { type InputInfo } from "../Main"
+import { formatAttribute } from "../../utils/common"
 
+interface InputRadioProps {
+    name: string,
+    label: string,
+    options: InputInfo[]
+    value?: string,
+    description?: string,
+    handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
-const InputRadio = ({  }: InputRadioProps) => {
+const InputRadio = ({ name, label, options, value, description, handleChange }: InputRadioProps) => {
+
+    // Set default in case no value is provided
+    const inputVal = value || options[0]?.value || '';
+    const helperText = description || '';
 
     return (
         <>
-            <p className="label">Where will you purchase the fare?</p>
+            <p className="label">{label}</p>
             <div className="input-contain">
-                <div className="themed-input-radio">
-                    <input type="radio" id="purchase_1" name="purchase" defaultChecked />
-                    <label htmlFor="purchase_1"><span></span>Station Kiosk</label>
+                {options.map(option => (
+                <div className="themed-input-radio" key={option.value}>
+                    <input type="radio" id={formatAttribute(option.value)} name={name} checked={inputVal === formatAttribute(option.value)} onChange={handleChange} />
+                    <label htmlFor={formatAttribute(option.value)}><span></span>{option.name}</label>
                 </div>
-                <div className="themed-input-radio">
-                    <input type="radio" id="purchase_2" name="purchase" />
-                    <label htmlFor="purchase_2"><span></span>Onboard</label>
-                </div>
+                ))}
             </div>
+            {helperText && <p className="description">{helperText}</p>}
+
         </>
     )
 }

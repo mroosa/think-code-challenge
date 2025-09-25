@@ -5,6 +5,8 @@
   --septa-widget-input-border-radius: 12px;
   --septa-widget-input-padding: 10px 20px;
   --septa-widget-theme-color: #0000ff;
+  --septa-widget-theme-error-color: #ca0707;
+  --septa-widget-theme-error-bgcolor: #ffe9e9;
   --septa-widget-theme-accent-color: #1f4fa3;
   --septa-widget-theme-accent-color-light: #78a6f7;
   --septa-widget-select-focus: blue;
@@ -271,12 +273,13 @@ body {
         -moz-appearance: textfield;
       }
 
+      // Styles disabled for now
+      /*
       &::before,
       &::after {
-        display: block;
-        position: absolute;
         content: "";
         cursor: pointer;
+        position: absolute;
         right: 15px;
         z-index: 2;
         justify-self: end;
@@ -295,11 +298,18 @@ body {
         top: calc(50% + 3px);
         clip-path: polygon(100% 0, 0 0, 50% 100%);
       }
+      */
+
+      &.error input {
+        border-color: var(--septa-widget-theme-error-color);
+        color: var(--septa-widget-theme-error-color);
+        background-color: var(--septa-widget-theme-error-bgcolor);
+      }
 
     }
 
     /* Specific input styles */
-    #input-number-1 {
+    #num-tickets {
       display: inline-block;
       margin: 0 auto;
       text-align: center;
