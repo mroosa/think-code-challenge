@@ -1,0 +1,9 @@
+{
+    "extended_info": {
+        "anytime": "Anytime",
+        "weekday": "Weekday",
+        "evening_weekend": "Evening / Weekend",
+        "advance_purchase": "Station Kiosk",
+        "onboard_purchase": "Onboard"
+    }
+}
