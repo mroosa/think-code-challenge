@@ -20,4 +20,9 @@ export default defineConfig([
       globals: globals.browser,
     },
   },
+  { 
+    rules:{ 
+      "jsx-quotes": ['error', 'prefer-double'],
+    }
+  }
 ])
