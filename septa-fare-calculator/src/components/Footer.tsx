@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react"
-import { formatCurrency } from "../utils/common"
+import { useEffect, useState } from 'react'
+import { formatCurrency } from '../utils/common'
 
 interface FooterProps {
     tickets: number,

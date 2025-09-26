@@ -1,5 +1,5 @@
-import { type InputInfo } from "../Main"
-import { formatAttribute } from "../../utils/common"
+import { type InputInfo } from '../Main'
+import { formatAttribute } from '../../utils/common'
 
 interface InputRadioProps {
     name: string,
