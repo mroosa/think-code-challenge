@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo } from 'react'
 import Footer from './Footer'
 // local data
-import { info, zones } from './../data/fares.json'
+// import { info, zones } from './../data/fares.json'
 // Extended info is used to assume (human readable) information not included in provided data
 import { extended_info } from './../data/data.json'
 import { InputSelect, InputRadio, InputNumber } from './Inputs'
@@ -28,9 +28,9 @@ interface Zone {
 
 const Main = () => {
 
-    const [loading, setLoading] = useState('loaded');
-    // const [info, setInfo] = useState({});
-    // const [zones, setZones] = useState<Zone[]>([]);
+    const [loading, setLoading] = useState('loading');
+    const [info, setInfo] = useState({});
+    const [zones, setZones] = useState<Zone[]>([]);
 
     // TODO: Condense input values into a single state object
 
@@ -231,12 +231,29 @@ const Main = () => {
 
     useEffect(() => {
 
-        setZoneOptions(zones.map((item: Zone) => ({
-            'name': item.name,
-            'value': item.zone.toString(),
-        })));
-        handleZoneChange(activeZone);
-    }, [ ]);
+        const getFareData = async () => {
+            try {
+                const response = await fetch('https://raw.githubusercontent.com/mroosa/think-code-challenge/refs/heads/master/septa-fare-calculator/src/data/fares.json');
+                const data = await response.json();
+                if (data) {
+                    setInfo(data.info);
+                    setZones(data.zones);
+                    setLoading('loaded');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+        if (loading === 'loading') {
+            getFareData();
+        } else {
+            setZoneOptions(zones.map((item: Zone) => ({
+                'name': item.name,
+                'value': item.zone.toString(),
+            })));
+            handleZoneChange(activeZone);
+        }
+    }, [ loading ]);
 
     // Memoize the price, re-calculate when dependent values change
     const price = useMemo(() => {
@@ -304,7 +321,7 @@ const Main = () => {
                         description={ticketDescription}
                         handleChange={(e) => handleDefaultChange(e)}
                     />
-                </div>
+                </div> {/* */}
         </main>
         <Footer 
             tickets={numberTickets}
